@@ -1,7 +1,8 @@
-fixtures :products
 require 'test_helper'
 
+
 class ProductTest < ActiveSupport::TestCase
+	fixtures :ProductTest
   # test "the truth" do
   #   assert true
   # end
@@ -15,11 +16,10 @@ class ProductTest < ActiveSupport::TestCase
 	end
 
 	test "product price must be positive" do
-		product = Product.new(title:
-		"My Book Title",
-		description: "yyy",
-		"zzz.jpg")
-		image_url:
+		product = Product.new(title:	"My Book Title",
+													description: "yyy",
+													image_url:"zzz.jpg")
+												
 		product.price = -1
 		assert product.invalid?
 		assert_equal ["must be greater than or equal to 0.01"],
@@ -33,13 +33,10 @@ class ProductTest < ActiveSupport::TestCase
 	end
 
 	def new_product(image_url)
-		"My Book Title",
-		Product.new(title:
-		description: "yyy",
-		price:
-		1,
-		image_url:
-		image_url)
+		Product.new(title: "My Book Title",
+								description: "yyy",
+								price: 1,
+								image_url:		image_url)
 	end
 
 	test "image url" do
