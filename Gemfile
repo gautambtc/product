@@ -48,5 +48,5 @@ group :development do
 end
 
 group :production do
-	gem 'postgresql'
+	gem 'pg'
 end
