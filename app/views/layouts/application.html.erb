@@ -7,10 +7,14 @@
 		<%= csrf_meta_tags %>
 	</head>
 	<body class="<%= controller.controller_name %>">
+	<div class="top-add">
+		<%#= render partial: "ads/top" %>
+	</div>
 		<div id="banner">
 			<%= image_tag("logo.png", size: '30x30') %>
-			<%= @page_title || "Pragmatic Bookshelf" %>
+			<%= @page_title || t('.title') %>
 		</div>
+			
 		<div id="columns">
 			<div id="side">
 				<% if @cart %>
@@ -19,11 +23,20 @@
 					<% end %>
 				<% end %>
 				<ul>
-					<li><a href="<%= store_path %>">Home</a></li>
-					<li><a href="#">Questions</a></li>
-					<li><a href="#">News</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="<%= store_path %>"><%= t('.home') %></a></li>
+					<li><a href="#"><%= t('.questions') %></a></li>
+					<li><a href="#"><%= t('.news') %></a></li>
+					<li><a href="#"><%= t('.contact') %></a></li>
 				</ul>
+
+				<% if session[:user_id] %>
+					<ul>
+						<li><%= link_to 'Orders',	orders_path	%></li>
+						<li><%= link_to 'Products', products_path %></li>
+						<li><%= link_to 'Users', users_path %></li>
+					</ul>
+					<%= button_to 'Logout', logout_path, method: :delete %>
+				<% end %>
 			</div>
 		
 			<div id="main">
